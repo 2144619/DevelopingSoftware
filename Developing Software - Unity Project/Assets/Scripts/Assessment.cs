@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro;
 using System.Xml.Linq;
 using UnityEditor.VersionControl;
+using System.Reflection;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Assessment : MonoBehaviour
 {
@@ -18,10 +20,10 @@ public class Assessment : MonoBehaviour
     TMP_Text playerScoreDisplay;
 
     [SerializeField]
-    TMP_Text [] highScoreDisplay;
+    TMP_Text [] highScoreDisplays;
 
     [SerializeField]
-    TMP_Text [] highScoreNameDisplay;
+    TMP_Text [] highScoreNameDisplays;
 
     bool highScoreAchieved = false;
     int playerScore = PlayerPrefs.GetInt("playerScore", 0);
@@ -68,7 +70,7 @@ public class Assessment : MonoBehaviour
 
     public void DisplayData()
     {
-        //2.1. IF highScoreAchieved is true
+        //IF highScoreAchieved is true
         if (highScoreAchieved)
         {
 
@@ -84,30 +86,44 @@ public class Assessment : MonoBehaviour
         playerName = playerNameDisplay.text;
         playerScoreDisplay.text = playerScore.ToString();
 
+        //FOR scoreIndex from 0 to 3
         for (int scoreIndex = 0; scoreIndex < 3; scoreIndex++)
         {
+            //READ highScore and highScoreName variables from Unity PlayerPrefs using the scoreIndex
             int highScore = PlayerPrefs.GetInt("highScore", 0);
             string highScoreName = PlayerPrefs.GetString("highScoreName", "");
 
-
+            //CALL DisplayScore() with scoreIndex, highScore, and highScoreName
             DisplayScore(scoreIndex, highScore, highScoreName);
-            
-            
-
-            
-
 
         }
 
 
-
-
     }
 
-    public void DisplayScore(int scoreIndex, int highScore, string highScoreName)
+    public void DisplayScore(int index, int score, string name)
     {
-        //highScoreDisplay() = scoreIndex.ToString();
-     
+        //IF score is greater than 0
+        if (score > 0)
+        {
+            //2.9.2. DISPLAY score to the highScoreDisplays at index
+            //highScoreDisplay[index].text = score.ToString();
+            highScoreNameDisplays[index].text = score.ToString();
+
+
+        }
+        //2.9.3. ELSE
+        else
+        {
+            //2.9.4. DISPLAY the empty string to the highScoreDisplays at index.
+            highScoreDisplays[index].text = name;
+
+        }
+        //2.9.5. ENDIF
+
+
+        //2.9.6. DISPLAY name to the highScoreNameDisplays at index
+        name = highScoreNameDisplays[index].ToString();
     }
 
     // Start is called before the first frame update

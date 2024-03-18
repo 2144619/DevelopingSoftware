@@ -1883,17 +1883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d869eec97c20c9e43bfd8135e9129454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageDisplay: {fileID: 1835695472}
-  playerNameDisplay: {fileID: 1776378826}
-  playerScoreDisplay: {fileID: 722425012}
-  highScoreDisplays:
-  - {fileID: 1216180546}
-  - {fileID: 1255107100}
-  - {fileID: 130789185}
-  highScoreNameDisplays:
-  - {fileID: 2043889038}
-  - {fileID: 1780468627}
-  - {fileID: 921135301}
 --- !u!114 &2031804271
 MonoBehaviour:
   m_ObjectHideFlags: 0
