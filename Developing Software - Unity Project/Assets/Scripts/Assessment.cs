@@ -26,14 +26,14 @@ public class Assessment : MonoBehaviour
     TMP_Text [] highScoreNameDisplays;
 
     bool highScoreAchieved = false;
-    int playerScore = PlayerPrefs.GetInt("playerScore", 0);
-    string playerName = PlayerPrefs.GetString("playerName", "");
+    int playerScore = 0;
+    string playerName = "";
 
     public void PrepareData()
     {
         //Get playerScore & playerName from PlayerPrefs
-        int playerScore = PlayerPrefs.GetInt("playerScore", 0);
-        string playerName = PlayerPrefs.GetString("playerName", "");
+        playerScore = PlayerPrefs.GetInt("playerScore", 0);
+        playerName = PlayerPrefs.GetString("playerName", "");
 
         //INITIALISE newScore and newName variables to be equal to playerScore and playerName
         int newScore = playerScore;
@@ -43,21 +43,21 @@ public class Assessment : MonoBehaviour
         for (int scoreIndex = 0; scoreIndex < 3; scoreIndex++)
         {
             //READ highScore and highScoreName variables from Unity PlayerPrefs using the scoreIndex
-            int highScore = PlayerPrefs.GetInt("highScore", 0);
-            string highScoreName = PlayerPrefs.GetString("highScoreName", "");
+            int highScore = PlayerPrefs.GetInt("highScore" + scoreIndex.ToString());
+            string highScoreName = PlayerPrefs.GetString("highScoreName" + scoreIndex.ToString());
 
             //IF newScore is greater than highScore THEN
             if (newScore > highScore) 
             {
                 //SET highScoreAchieved to true
-                bool highScoreAchieved = true;
+                highScoreAchieved = true;
 
                 string newScoreName = newName;
 
                 //WRITE newScore and newScoreName variables into Unity PlayerPrefs forthe high score and high score name at this scoreIndex.
 
-                PlayerPrefs.SetInt("highScore" , newScore);
-                PlayerPrefs.SetString("highScoreName", newScoreName);
+                PlayerPrefs.SetInt("highScore" + scoreIndex.ToString(), newScore);
+                PlayerPrefs.SetString("highScoreName" + scoreIndex.ToString(), newName);
 
                 PlayerPrefs.Save();
                 //SET newScore equal to highScore
@@ -71,7 +71,7 @@ public class Assessment : MonoBehaviour
     public void DisplayData()
     {
         //IF highScoreAchieved is true
-        if (highScoreAchieved)
+        if (highScoreAchieved == true)
         {
 
             //DISPLAY "Congratulations! You got a new high score!" to the messageDisplay text object.
