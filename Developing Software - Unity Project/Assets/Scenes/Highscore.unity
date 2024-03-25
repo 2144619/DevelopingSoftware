@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517a98cffb09186459e08b3340b749a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageDisplay: {fileID: 1776378826}
+  messageDisplay: {fileID: 1835695472}
   playerNameDisplay: {fileID: 1776378826}
   playerScoreDisplay: {fileID: 722425012}
   highScoreDisplays:
